@@ -1,0 +1,1 @@
+// default.json is used to store default configuration settings for the application

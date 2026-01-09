@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://pranav:pranav@devconnector.vfolbto.mongodb.net/?appName=DevConnector",
+  "jwtSecret": "mysecrettoken"
+}

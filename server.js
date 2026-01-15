@@ -1,4 +1,4 @@
-const express = require('express'); // variable express wnat to get an express server up and running
+const express = require('express'); // variable express want to get an express server up and running
 const connectdb = require('./config/db'); // import the connectdb function from config/db.js
 
 const app = express(); // create an instance of express

@@ -6,7 +6,7 @@ const config = require('config'); // import config module to access config varia
 const Profile = require('../../models/Profile'); // import the Profile model
 const User = require('../../models/User'); // import the User model
 
-const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator'); // error checking
 
 // @route   GET api/profile
 // @desc    Get current users profile
@@ -16,7 +16,7 @@ router.get('/me', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       // find the profile by user ID from the auth middleware populate is used to get user details from User model to the profile model
       'user',
-      ['name', 'avatar']
+      ['name', 'avatar'],
     );
 
     if (!profile) {
@@ -90,7 +90,7 @@ router.post(
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
-          { new: true }
+          { new: true },
         );
 
         return res.json(profile); // if found and update the profile return it
@@ -104,7 +104,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   GET api/profile
@@ -199,7 +199,7 @@ router.put(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   DELETE api/profile/experience/:exp_id
@@ -273,7 +273,7 @@ router.put(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   DELETE api/profile/education/:edu_id
@@ -314,7 +314,7 @@ router.get('/github/:username', async (req, res) => {
       uri: `https://api.github.com/users/${
         req.params.username
       }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId'
+        'githubClientId',
       )}&client_secret=${config.get('githubSecret')}`,
       method: 'GET',
       headers: { 'user-agent': 'node.js' },

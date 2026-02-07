@@ -19,6 +19,6 @@ app.use('/api/profile', require('./routes/api/profile'));
 
 app.get('/', (req, res) => res.send('API Running')); // create a route for the root URL that sends back a message
 
-const PORT = process.env.PORT || 3000; // look for an env var called port to use and when deployed heroku gets port from env var with default 5000
+const PORT = process.env.PORT || 7000; // look for an env var called port to use and when deployed heroku gets port from env var with default 5000
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`)); // listen on the port and log a message when server starts

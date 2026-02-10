@@ -1,7 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+// now in order to connect this component to the redux store we need to import connect from react-redux
+// whenever we use connect then we need to export the component using connect and we need to pass the component as an argument to connect
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Register = () => {
+const Register = ({ setAlert }) => {
   // useState is a hook that allows us to use state in functional components
   // formData is the state variable that holds the form data
   // setFormData is the function that updates the formData state variable
@@ -26,7 +31,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password != password2) {
-      console.log('Passwords do not match');
+      setAlert('Passwords do not match', 'danger'); // this will dispatch the setAlert action with the message and alert type as arguments
     } else {
       console.log('SUCCESS');
     }
@@ -94,4 +99,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register); // this setALert and its types can be accessed using the props of the component, hence we can use props.setAlert to dispatch the setAlert action from this component
